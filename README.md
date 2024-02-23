@@ -14,7 +14,7 @@ php artisan key:generate
 php artisan migrate --seed
 
 ## JALANKAN APLIKASI
-php aritsan serve
+php artisan serve
 
 dan buka [128.0.0.1](http://127.0.0.1:8000/) sebagai user[
 128.0.0.1]
