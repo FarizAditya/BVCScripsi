@@ -1,6 +1,8 @@
 ## PETUNJUK INSTALLASI
 gitclone https://github.com/FarizAditya/BVCScripsi.git
+
 cd BVCScripsi
+
 composer install
 ubah file nama fileenv jadi .env
 
