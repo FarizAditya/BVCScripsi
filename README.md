@@ -30,8 +30,7 @@ php artisan serve
 
 
 ```
-dan buka [128.0.0.1](http://127.0.0.1:8000/) sebagai user[
-128.0.0.1]
+dan buka [128.0.0.1](http://127.0.0.1:8000/) sebagai user
 
 (http://127.0.0.1:8000/admin/) untuk admin
 
