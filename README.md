@@ -10,6 +10,8 @@ composer install
 
 ubah file nama fileenv jadi .env
 
+import bvc_shop.sql ke dalam localhost/phpnyadmin 
+
 ```
 ## INSTALASI APLIKASI
 
