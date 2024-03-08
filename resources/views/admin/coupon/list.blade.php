@@ -63,7 +63,7 @@
 									@if($discountCoupon->type == 'percent')
 										{{$discountCoupon->discount_amount}}%
 									@else
-										Rp.{{$discountCoupon->discount_amount}}
+										Rp.{{number_format($discountCoupon->discount_amount,2)}}
 									@endif
 								</td>
 								<td>{{ (!empty($discountCoupon->starts_at)) ? \Carbon\Carbon::parse($discountCoupon->starts_at)->format('Y/m/d H:i:s') : '' }}</td>

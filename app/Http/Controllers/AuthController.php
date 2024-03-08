@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
@@ -55,32 +56,22 @@ class AuthController extends Controller
     }
 
     public function authenticate(Request $request) {
-        $validator = Validator::make($request->all(),[
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        if ($validator->passes()){
-
-
-            if(Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))){
-
-                if(session()->has('url.intended')){
-                    return redirect(session()->get('url.intended'));
-                }
-
-                return redirect()->route('account.profile');
-
-            } else {
-
-                return redirect()->route('account.login')->withInput($request->only('email'))->with('error','Either email/password is incorrect.');
-            }
-
-
-        } else {
-            return redirect()->route('account.login')->withErrors($validator)->withInput($request->only('email'));
-        }
+    if ($validator->fails()) {
+        return redirect()->route('account.login')->withErrors($validator)->withInput($request->only('email'))->with('error', 'Invalid email or password.');
     }
+
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        return redirect()->intended(route('account.profile'))->with('success', 'You have successfully logged in.');
+    }
+
+    return redirect()->route('account.login')->withInput($request->only('email'))->with('error', 'Invalid email or password.');
+    }
+
     public function profile(){
         $userId = Auth::user()->id;
         $countries = Country::orderBy('name','ASC')->get();
@@ -136,11 +127,7 @@ class AuthController extends Controller
             'mobile' => 'required'
         ]);
         if ($validator->passes()){
-            // $user = User::find($userId);
-            // $user->name = $request->name;
-            // $user->email = $request->email;
-            // $user->phone = $request->phone;
-            // $user->save();
+            
             CustomerAddress::updateOrCreate(
             ['user_id' => $userId],
             [
@@ -172,10 +159,18 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(){
+
+   public function logout(Request $request): RedirectResponse
+    {
     Auth::logout();
-    return redirect()->route('account.login')->with('success','You successfully logged out!');
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect()->route('account.login')->with('success', 'You have been successfully logged out.');
     }
+
 
     public function orders(){
         $data = [];

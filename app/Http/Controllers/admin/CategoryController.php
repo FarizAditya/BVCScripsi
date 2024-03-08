@@ -9,7 +9,6 @@ use App\Models\Category;
 use App\Models\TempImage;
 use Illuminate\Support\Facades\File;
 use Image;
-// use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -141,7 +140,7 @@ class CategoryController extends Controller
                 $ext = last($extArray);
 
                 $newImageName = $category->id.'-'.time().'.'.$ext;
-                $sPath = public_path().'/temp/'.$tempImage->name;
+                $sPath = public_path().'/temp/thumb/'.$tempImage->name;
                 $dPath = public_path().'/uploads/category/'.$newImageName;
                 File::copy($sPath,$dPath);
 

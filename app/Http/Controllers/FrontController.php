@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Page;
 use App\Models\Wishlist;
+
 class FrontController extends Controller
 {
     public function index()
@@ -54,15 +55,6 @@ class FrontController extends Controller
                 'product_id' => $request->id,
             ]
         );
-
-
-
-
-        // $wishlist = new Wishlist;
-        // $wishlist->user_id = Auth::user()->id;
-        // $wishlist->product_id = $request->id;
-        // $wishlist->save();
-
 
 
         return response()->json([

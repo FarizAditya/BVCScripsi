@@ -15,9 +15,9 @@
 
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
-                        <h1 class="display-4 text-white mb-3">Bariss vape Corner</h1>
+                        <h1 class="display-4 text-dark mb-3">Bariss vape Corner</h1>
                         <p class="mx-md-5 px-5">Menghadirkan informasi terkini seputar vape/rokok elektrik di kawasan purworejo.</p>
-                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{route('front.shop')}}">Shop Now</a>
+                        <a class="btn btn-outline-dark py-2 px-4 mt-3" href="{{route('front.shop')}}">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -106,18 +106,14 @@
                                     <img src="{{ asset('assets/img/default-150x150.png')}}" width="100%" height="auto" alt="dproduct" />
                                     @endif    
                                 </a>
-
-                                <!-- <a onclick="addToWishlist({{ $product->id}})" class="whishlist" href="javascript:void(0);"><i class="far fa-heart"></i></a>                             -->
                                 <a id="wishlistLinkFeatured{{$product->id}}" class="whishlist" onclick="addToWishlist({{ $product->id }})" href="javascript:void(0);">
                                 <i class="far fa-heart"></i>
+                                <span class="sr-only">Add To Wishlist</span>
                                 </a>
 
                                 <div class="product-action">
                                     @if($product->track_qty == 'Yes')
                                     @if($product->qty > 0)
-                                    <!-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
-                                        <i class="fa fa-shopping-cart"></i> Add To Cart
-                                    </a> -->
                                     <a id="addToCartLinkFeatured{{$product->id}}" class="btn btn-dark" onclick="addToCart({{$product->id}});" href="javascript:void(0);">
                                         <i class="fa fa-shopping-cart"></i> Add To Cart
                                     </a>
@@ -127,9 +123,6 @@
                                     </a>>
                                     @endif
                                     @else
-                                    <!-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
-                                        <i class="fa fa-shopping-cart"></i> Add To Cart
-                                    </a> -->
                                     <a id="addToCartLinkFeatured{{$product->id}}" class="btn btn-dark" onclick="addToCart({{$product->id}});" href="javascript:void(0);">
                                         <i class="fa fa-shopping-cart"></i> Add To Cart
                                     </a>
@@ -177,13 +170,11 @@
                             <!-- <a onclick="addToWishlist({{ $product->id}})" class="whishlist" href="javascript:void(0);"><i class="far fa-heart"></i></a>                           -->
                             <a id="wishlistLinkLatest{{$product->id}}" class="whishlist" onclick="addToWishlist({{ $product->id }})" href="javascript:void(0);">
                                 <i class="far fa-heart"></i>
+                                <span class="sr-only">Add To Wishlist</span>
                             </a>
                             <div class="product-action">
                                 @if($product->track_qty == 'Yes')
                                 @if($product->qty > 0)
-                                <!-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
-                                    <i class="fa fa-shopping-cart"></i> Add To Cart
-                                </a> -->
                                 <a id="addToCartLinkLatest{{$product->id}}" class="btn btn-dark" onclick="addToCart({{$product->id}});" href="javascript:void(0);">
                                         <i class="fa fa-shopping-cart"></i> Add To Cart
                                     </a>
@@ -193,9 +184,6 @@
                                 </a>
                                 @endif
                                 @else
-                                <!-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
-                                    <i class="fa fa-shopping-cart"></i> Add To Cart
-                                </a> -->
                                 <a id="addToCartLinkLatest{{$product->id}}" class="btn btn-dark" onclick="addToCart({{$product->id}});" href="javascript:void(0);">
                                         <i class="fa fa-shopping-cart"></i> Add To Cart
                                     </a>

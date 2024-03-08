@@ -15,15 +15,10 @@ class BrandController extends Controller
         {
             $brands = $brands->where('name','like','%'.$request->get('keyword').'%');
         }
-        
         $brands = $brands->paginate(10);
-
         return view('admin.brands.list',compact('brands'));
 
-
     }
-
-
 
 
     public function create() {
@@ -43,10 +38,12 @@ class BrandController extends Controller
             $brand->status = $request->status; 
             $brand->save();
             
+            $message = 'Brand added successfully.';
+            session()->flash('success', $message);
             return response()->json([
-                'status' =>true,
-                'message' => 'Brand added Successfully'
-            ]);    
+                'status' => true,
+                'message' => $message
+            ]);  
         } else {
             return response()->json([
                 'status' => false,
@@ -80,7 +77,6 @@ class BrandController extends Controller
             ]);
         } 
 
-
          $validator = Validator::make($request->all(),[
             'name' => 'required',
             'slug' =>'required|unique:brands,slug,'.$brand->id.',id',
@@ -93,18 +89,34 @@ class BrandController extends Controller
             $brand->status = $request->status;
             $brand->save();
 
+            $message = 'Brand updated successfully.';
+            session()->flash('success', $message);
             return response()->json([
                 'status' => true,
-                'message' => 'Brand updated successfully.'
-            ]);
-
+                'message' => $message
+            ]); 
 
      }else {
             return response([
                 'status' =>false,
                 'errors' =>$validator->errors()
-
             ]);
           }     
+    }
+    public function destroy(Request $request, $id) {
+        $brand = Brand::find($id);
+
+        if($brand == null) {
+
+        session()->flash('error','Record Not Found');
+        return response()->json([
+            'status' => true
+        ]);
+        }
+        $brand->delete();
+        session()->flash('success','Brand deleted successfully.');
+        return response()->json([
+            'status' => true
+        ]);
     }
 }

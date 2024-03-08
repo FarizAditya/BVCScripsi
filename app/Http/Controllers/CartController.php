@@ -20,7 +20,6 @@ use Illuminate\Support\Carbon;
 class CartController extends Controller
 {
     public function addToCart(Request $request){
-        //Cart::add('293ad', 'Product 1', 1, 9.99);
         $product = Product::with('product_images')->find($request->id);
         if ($product == null){
             return response()->json([
@@ -29,7 +28,6 @@ class CartController extends Controller
             ]);
         }
         if (Cart::count() > 0){
-            //echo "Product already in cart ";
             //Product found in cart
             //Check if this product already in the cart
             //Return as message that product already added in your cart
@@ -343,9 +341,7 @@ class CartController extends Controller
 
             }
 
-
-            // Send Order Email
-            orderEmail($order->id,'customer');
+            // orderEmail($order->id,'customer');
 
             session()->flash('success','You have successfully placed your order.');
 

@@ -44,6 +44,18 @@
 	<!-- Fav Icon -->
 	<link rel="shortcut icon" type="image/x-icon" href="#" />
 	@laravelPWA
+	<style type="text/css">
+		.sr-only {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
+		}
+	</style>
 </head>
 <body data-instant-intensity="mousedown">
 
@@ -110,7 +122,8 @@
           	</div>   
           	<div class="right-nav py-0">
           		<a href="{{route('front.cart')}}" class="ml-3 d-flex pt-2">
-          			<i class="fas fa-shopping-cart text-primary"></i>					
+          			<i class="fas fa-shopping-cart text-primary"></i>
+          			<span class="sr-only">Cart</span>					
           		</a>
           	</div> 		
           </nav>

@@ -21,8 +21,6 @@ class AdminLoginController extends Controller
 
             'email' => 'required|email',
             'password' => 'required'
-
-
         ]);
 
         if ($validator->passes()){
@@ -41,10 +39,7 @@ class AdminLoginController extends Controller
 
                     Auth::guard('admin')->logout();
                     return redirect()->route('admin.login')->with('error','You Are Not Authorized to access admin Panel.');
-                }
-
-                   
-                    
+                }               
                 }else {
                      return redirect()->route('admin.login')->with('error','Either Email/Pasword is incorrect');
                 }
